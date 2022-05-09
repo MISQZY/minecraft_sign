@@ -1,7 +1,7 @@
 text_for_sign = "" # оставляйте пустым, если используете построчный ввод
 color = "green"
 # Построчный ввод
-first = "121314141251515125151511241214415"
+first = None
 second = None
-third = "235"
+third = None
 four = None
