@@ -1,5 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
-from settings import text_for_sign, color
+from settings import text_for_sign, color, first, second, third, four
 def start():
     start_input = input("Для начала работы напишите start\n")
     if start_input == "start":
@@ -11,52 +11,58 @@ def main():
     x = 885
     input_text = str.strip(text_for_sign)
     char_count = len(input_text)
-    print(char_count)
-    
-
-
-    if char_count <= 15:
-        strings = 1  
+    if (first is not None and second is None and third is None and four is None) or (char_count > 0 and char_count <= 15):
+        strings = 1
     else:
-        if char_count > 15 and char_count <= 30:
+        if (first is None and second is not None and third is None and four is None) or (char_count > 15 and char_count <= 30):
             strings = 2
         else:
-            if char_count > 30 and char_count <= 45:
+            if (first is None and second is None and third is not None and four is None) or (char_count > 30 and char_count <= 45):
                 strings = 3
             else:
-                if char_count > 45 and char_count <= 60:
+                if (four is not None) or (char_count > 45 and char_count <= 60):
                     strings = 4
                 else:
-                    strings = 5
+                    if char_count > 60:
+                        strings = 5
 
-                
-
-    first_text = input_text[:15] 
+    if first is None:
+        first_text = input_text[:15]
+    else:
+        first_text = first
     first_text = str.strip(first_text)
     char_count = len(first_text)
     first_char = char_count * 42 
     first_locate = (x - first_char, 80)
 
-    second_text = input_text[15:30]
+    if second is None:
+        second_text = input_text[15:30]
+    else:
+        second_text = second  
     second_text = str.strip(second_text)
     char_count = len(second_text)
     second_char = char_count * 42
     second_locate = (x - second_char, 280)
 
-    third_text = input_text[30:45]
+    if third is None:
+        third_text = input_text[30:45]
+    else:
+        third_text = third
     third_text = str.strip(third_text)
     char_count = len(third_text)
     third_char = char_count * 42
     third_locate = (x - third_char, 480)
 
-    four_text = input_text[45:60]
+    if four is None:
+        four_text = input_text[45:60]
+    else:
+        four_text = four
     four_text = str.strip(four_text)
     char_count = len(four_text)
     four_char = char_count * 42
     four_locate = (x - four_char, 680)
 
     img_create(strings, first_locate, first_text,  second_locate, second_text, third_locate, third_text, four_locate, four_text)
-
 
 def img_create(strings, first_locate, first_text,  second_locate, second_text, third_locate, third_text, four_locate, four_text):
     image = Image.open("./other/mine.jpg")
@@ -83,12 +89,6 @@ def img_create(strings, first_locate, first_text,  second_locate, second_text, t
         draw.text(four_locate, text = four_text, font=font, fill= color)
         print("Обрезал лишнее")
     image.save("mine_done.jpg")
-
-
-
-
-
-
 
 if __name__ == "__main__":
    start()
