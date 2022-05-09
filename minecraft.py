@@ -14,10 +14,10 @@ def main():
     if (first is not None and second is None and third is None and four is None) or (char_count > 0 and char_count <= 15):
         strings = 1
     else:
-        if (first is None and second is not None and third is None and four is None) or (char_count > 15 and char_count <= 30):
+        if(second is not None and third is None and four is None) or (char_count > 15 and char_count <= 30):
             strings = 2
         else:
-            if (first is None and second is None and third is not None and four is None) or (char_count > 30 and char_count <= 45):
+            if(third is not None and four is None) or (char_count > 30 and char_count <= 45):
                 strings = 3
             else:
                 if (four is not None) or (char_count > 45 and char_count <= 60):
@@ -29,7 +29,7 @@ def main():
     if first is None:
         first_text = input_text[:15]
     else:
-        first_text = first
+        first_text = first[:15]
     first_text = str.strip(first_text)
     char_count = len(first_text)
     first_char = char_count * 42 
@@ -38,7 +38,7 @@ def main():
     if second is None:
         second_text = input_text[15:30]
     else:
-        second_text = second  
+        second_text = second[:15]
     second_text = str.strip(second_text)
     char_count = len(second_text)
     second_char = char_count * 42
@@ -47,7 +47,7 @@ def main():
     if third is None:
         third_text = input_text[30:45]
     else:
-        third_text = third
+        third_text = third[:15]
     third_text = str.strip(third_text)
     char_count = len(third_text)
     third_char = char_count * 42
@@ -56,7 +56,7 @@ def main():
     if four is None:
         four_text = input_text[45:60]
     else:
-        four_text = four
+        four_text = four[:15]
     four_text = str.strip(four_text)
     char_count = len(four_text)
     four_char = char_count * 42
